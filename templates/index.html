@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bike Price Predictor</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url("{{ url_for('static', filename='bike.jpg') }}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        background: rgba(123, 211, 248, 0.9); /* semi-transparent white */
+        padding: 20px;
+        margin: 50px; /* Space from top and left */
+        border-radius: 8px;
+        width: 400px; /* Fixed width */
+        /* Remove centering */
+      }
+
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+      label {
+        display: block;
+        margin-top: 15px;
+        color: #555;
+      }
+      input[type="number"],
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+        background-color: #4285f4;
+        color: white;
+        border: none;
+        padding: 10px;
+        margin-top: 20px;
+        width: 100%;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #357ae8;
+      }
+      .result {
+        margin-top: 20px;
+        text-align: center;
+        color: #333;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Bike Price Prediction</h2>
+      <form action="/predict" method="post">
+        <label>Age (Years):</label>
+        <input type="number" name="age" required />
+
+        <label>Engine CC:</label>
+        <input type="number" name="engine_cc" required />
+
+        <label>Mileage (kmpl):</label>
+        <input type="number" step="0.1" name="mileage" required />
+
+        <label>Brand:</label>
+        <select name="brand" required>
+          <option value="Honda">Honda</option>
+          <option value="Yamaha">Yamaha</option>
+          <option value="Bajaj">Bajaj</option>
+        </select>
+
+        <input type="submit" value="Predict Price" />
+      </form>
+
+      {% if prediction_text %}
+      <div class="result">{{ prediction_text }}</div>
+      {% endif %}
+    </div>
+  </body>
+</html>
