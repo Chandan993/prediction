@@ -5,7 +5,7 @@ import numpy as np
 app = Flask(__name__)
 
 # Load model and label encoder
-model = pickle.load(open('bike_model.pkl', 'rb'))
+model = pickle.load(open('model_compatible.pkl', 'rb'))
 le = pickle.load(open('label_encoder.pkl', 'rb'))
 
 @app.route('/')
